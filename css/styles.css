@@ -98,3 +98,46 @@ details{border-bottom:1px solid var(--line)}summary{list-style:none;display:flex
 .hero-visual>img,.story-enlarge img,.offer-product img{object-fit:contain}
 /* Original bonus cover, compact and independent from the purchase CTA. */
 .bonus{align-items:center}.bonus-cover{display:block;width:88px;height:auto;flex:0 0 88px;aspect-ratio:4/5;object-fit:contain;border-radius:6px}.bonus>div{min-width:0}@media(min-width:1000px){.bonus-cover{width:96px;flex-basis:96px}}
+
+/* One continuous reassurance strip; identical geometry before/after JavaScript. */
+.trust-strip{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 132px;grid-template-rows:72px 44px;gap:6px 12px;height:144px;margin-top:24px;padding:10px 16px;border:1px solid #496073;border-top:2px solid var(--copper-light);border-radius:12px;background:#10263a;color:#fff}
+.trust-track{grid-column:1/-1;grid-row:1;display:grid;grid-auto-columns:100%;min-width:0;height:72px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#8394a7 transparent;border-radius:4px}
+.trust-message{grid-row:1;display:flex;align-items:center;gap:13px;min-width:0;scroll-snap-align:start;padding-right:4px}
+.trust-message>div{min-width:0}.trust-message strong{display:block;font-size:16px;line-height:1.3;color:#fff}.trust-message p{font-size:13px;line-height:1.45;color:#d2dfeb;margin-top:5px;max-width:40ch}
+.trust-icon{display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;background:#193f38;border:1px solid #558873;border-radius:50%;font-size:20px}
+.trust-meta{grid-column:1;grid-row:2;display:flex;align-items:center;gap:12px;visibility:hidden;font-size:10px;letter-spacing:1px;color:#aebdca;font-variant-numeric:tabular-nums}
+.trust-pips{display:flex;gap:5px;align-items:center}.trust-pips i{width:5px;height:5px;border-radius:4px;background:#647b8b;transition:background .3s}.trust-pips i.is-current{background:#ffc18a;box-shadow:0 0 0 3px #f4b47d1a}
+.trust-controls{grid-column:2;grid-row:2;display:flex;align-items:center;visibility:hidden}.trust-controls button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:7px;background:transparent;color:var(--copper-light);font-size:21px;line-height:1}
+.trust-controls button:hover{background:#243e52}.trust-controls button:disabled{cursor:default;color:#a5b3c2}.trust-controls button:focus-visible{outline-offset:-3px}
+.trust-progress{position:absolute;left:16px;right:16px;bottom:0;height:2px;overflow:hidden;background:#314958}.trust-progress>span{display:block;width:100%;height:100%;background:#f4b47d;transform:scaleX(0);transform-origin:left}
+.trust-strip.is-enhanced .trust-controls,.trust-strip.is-enhanced .trust-meta{visibility:visible}.trust-strip.is-enhanced .trust-track{overflow:clip;scroll-snap-type:none;scrollbar-width:none}
+.trust-strip.is-enhanced .trust-message{grid-area:1/1;opacity:0;visibility:hidden;transform:translateX(14px);transition:opacity .45s ease,transform .45s ease,visibility .45s}
+.trust-strip.is-enhanced .trust-message.is-current{opacity:1;visibility:visible;transform:translateX(0)}
+@media(min-width:768px){.trust-strip{grid-template-columns:92px minmax(0,1fr) 132px;grid-template-rows:72px;gap:22px;height:104px;padding:14px 22px;margin-top:28px}.trust-track{grid-column:2;grid-row:1}.trust-message{justify-content:center}.trust-message strong{font-size:18px}.trust-message p{font-size:14px}.trust-meta{grid-column:1;grid-row:1;flex-direction:column;justify-content:center;gap:10px;border-right:1px solid #3b5468;padding-right:22px}.trust-controls{grid-column:3;grid-row:1}.trust-progress{left:22px;right:22px}}
+@media(max-width:359px){.trust-strip{padding-inline:12px;column-gap:6px}.trust-meta{gap:7px;font-size:9px}.trust-message{gap:10px}.trust-icon{width:34px;height:34px;flex-basis:34px;font-size:17px}.trust-message strong{font-size:15px}.trust-message p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.trust-strip.is-enhanced .trust-message{transform:none;transition:none}.trust-track{scroll-behavior:auto}.trust-progress{display:none}}
+@media(forced-colors:active){.trust-strip,.trust-icon{border:1px solid CanvasText}.trust-controls button{border:1px solid ButtonText}.trust-pips i.is-current{outline:2px solid Highlight}}
+
+/* Owner-supplied marketplace reviews. No first-party aggregate rating. */
+.marketplace-reviews{background:#fff;border-top:1px solid #e9ded5}
+.marketplace-reviews .section-heading{max-width:700px}
+.marketplace-reviews .section-heading>p:last-child{font-size:15px;max-width:65ch}
+.marketplace-review-grid{display:grid;gap:16px}
+.marketplace-review-card{display:flex;flex-direction:column;min-width:0;padding:24px;border:1px solid #e6d5c8;border-top:3px solid #c37742;border-radius:14px;background:#fffaf6;box-shadow:0 6px 20px #56311608}
+.marketplace-stars{color:#ad581b;font-size:19px;letter-spacing:3px;line-height:1.4}
+.marketplace-review-card blockquote{flex:1;margin:16px 0 23px;color:var(--navy);font-size:18px;line-height:1.55;letter-spacing:-.2px}
+.marketplace-review-card footer{border-top:1px solid #e8dace;padding-top:15px;color:var(--muted);font-size:13px;line-height:1.5}
+.marketplace-review-note{color:var(--muted);font-size:13px;line-height:1.6;margin-top:22px;max-width:80ch}
+@media(min-width:768px){.marketplace-review-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.marketplace-review-card{padding:20px}.marketplace-review-card blockquote{font-size:16px}}
+@media(min-width:1000px){.marketplace-review-grid{gap:24px}.marketplace-review-card{padding:26px}.marketplace-review-card blockquote{font-size:19px}}
+
+/* Commercial accents preserve prices, size selection and CTA behavior. */
+.section-heading>.eyebrow{display:flex;align-items:center;gap:10px;color:#a64d14}
+.section-heading>.eyebrow::before{content:"";width:25px;height:2px;background:#db762d}
+.offer-highlight{display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:11px;border:1px solid #ad7147;border-radius:8px;background:#432b1e;color:#ffd4af}
+.offer-highlight-icon{font-size:20px;flex:0 0 24px;text-align:center}.offer-highlight>div{min-width:0}.offer-highlight strong{display:block;font-size:11px;line-height:1.4;letter-spacing:1.35px;text-transform:uppercase}.offer-highlight>div>span{display:block;font-size:12px;line-height:1.4;margin-top:3px;color:#ffe5cf}
+.hero-purchase .price-line strong,.final-purchase .price-line strong{color:#ffd4af}
+.purchase-card{background:#fffaf5;border-color:#d4a582;border-top:4px solid #ca722f;box-shadow:0 10px 34px #9751270c}
+.purchase-card>.offer-highlight{background:#fff0df;border-color:#e4b385;color:#8b3e0c;margin-bottom:20px}.purchase-card>.offer-highlight>div>span{color:#794619}
+.purchase-card .price-line strong{color:#92430f}.purchase-card>.eyebrow{margin-bottom:8px}
+.proof-cta{color:#984810}.final-offer{border-top-color:#e8873e}.mobile-sticky{border-top:2px solid #bb6c36}
