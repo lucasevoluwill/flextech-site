@@ -96,3 +96,5 @@ details{border-bottom:1px solid var(--line)}summary{list-style:none;display:flex
 
 /* Approved V6 media: preserve the current media boxes without cropping the product. */
 .hero-visual>img,.story-enlarge img,.offer-product img{object-fit:contain}
+/* Original bonus cover, compact and independent from the purchase CTA. */
+.bonus{align-items:center}.bonus-cover{display:block;width:88px;height:auto;flex:0 0 88px;aspect-ratio:4/5;object-fit:contain;border-radius:6px}.bonus>div{min-width:0}@media(min-width:1000px){.bonus-cover{width:96px;flex-basis:96px}}
