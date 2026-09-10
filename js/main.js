@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectSize = (size) => {
     selectedSize = size;
     text("[data-selected-size]", `Tamanho ${size.id} selecionado · ${size.range}`);
-    text("[data-sticky-label]", `Continuar com ${size.id}`);
     selectionErrors.forEach((error) => { error.textContent = ""; error.hidden = true; });
     checkoutLinks.forEach((link) => {
       link.href = size.checkout;
