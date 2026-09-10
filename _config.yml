@@ -1,0 +1,12 @@
+# Keep the approved V6 site in the Pages artifact. Preserve drafts in Git only.
+exclude:
+  - AGENTS.md
+  - assets/v61
+  - .cache
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
