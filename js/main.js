@@ -16,12 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let selectedSize = null;
   let checkoutRedirecting = false;
-  const sizeOptions = document.querySelector("[data-size-options]");
+  const sizeOptions = all("[data-size-options]");
   const checkoutLinks = all("[data-checkout]");
   const selectionErrors = all("[data-selection-error]");
 
   const selectSize = (size) => {
     selectedSize = size;
+    sizeOptions.forEach((options) => {
+      const input = options.querySelector(`input[value="${size.id}"]`);
+      if (input) input.checked = true;
+    });
     text("[data-selected-size]", `Tamanho ${size.id} selecionado · ${size.range}`);
     selectionErrors.forEach((error) => { error.textContent = ""; error.hidden = true; });
     checkoutLinks.forEach((link) => {
@@ -32,17 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  if (sizeOptions) {
-    const fragment = document.createDocumentFragment();
+  if (sizeOptions.length) {
+    sizeOptions.forEach((options, optionIndex) => {
+      const fragment = document.createDocumentFragment();
     product.sizes.forEach((size) => {
       const label = document.createElement("label");
       label.className = "size-option";
       const input = document.createElement("input");
       input.type = "radio";
-      input.name = "flextech-size";
-      input.id = `size-${size.id.toLowerCase()}`;
+      input.name = `flextech-size-${optionIndex}`;
+      input.id = `size-${size.id.toLowerCase()}-${optionIndex}`;
       input.value = size.id;
-      const sizeDescription = sizeOptions.getAttribute("aria-describedby");
+      const sizeDescription = options.getAttribute("aria-describedby");
       if (sizeDescription) input.setAttribute("aria-describedby", sizeDescription);
       input.addEventListener("change", () => { if (input.checked) selectSize(size); });
       const copy = document.createElement("span");
@@ -55,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
       label.append(input, copy);
       fragment.append(label);
     });
-    sizeOptions.replaceChildren(fragment);
+      options.replaceChildren(fragment);
+    });
   }
 
   all("[data-size-guide]").forEach((guide) => {
@@ -91,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
           error.hidden = false;
           error.textContent = "Escolha um tamanho antes de continuar.";
         });
-        sizeOptions?.querySelector("input")?.focus();
+        sizeOptions[0]?.querySelector("input")?.focus();
         return;
       }
       // Only an actual outbound checkout activation counts. Internal CTAs do not.
@@ -124,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // History navigation can restore native radio state after DOMContentLoaded.
   // Reconcile that existing choice after pageshow; do not infer or persist a size.
   const reconcileRestoredSize = () => {
-    const checked = sizeOptions?.querySelector("input[name='flextech-size']:checked");
+    const checked = sizeOptions[0]?.querySelector("input[type='radio']:checked");
     const restored = product.sizes.find((size) => size.id === checked?.value);
     if (restored) selectSize(restored);
   };
