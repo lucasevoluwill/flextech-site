@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   track("ViewContent", { content_name: product.name });
 
   let selectedSize = null;
+  let checkoutRedirecting = false;
   const sizeOptions = document.querySelector("[data-size-options]");
   const checkoutLinks = all("[data-checkout]");
   const selectionErrors = all("[data-selection-error]");
@@ -97,8 +98,21 @@ document.addEventListener("DOMContentLoaded", () => {
       track("InitiateCheckout", {
         content_name: product.name,
         content_category: "Joelheira",
-        content_ids: [selectedSize.id]
+        content_ids: [selectedSize.id],
+        value: product.price,
+        currency: product.currency
       });
+
+      // A normal click would otherwise navigate away immediately, which can cancel
+      // the outbound Pixel request on slow mobile connections. Keep modified and
+      // middle clicks native, but give a standard checkout click a brief send window.
+      const isStandardClick = event.type === "click" && !event.metaKey && !event.ctrlKey &&
+        !event.shiftKey && !event.altKey;
+      if (isStandardClick && !checkoutRedirecting) {
+        event.preventDefault();
+        checkoutRedirecting = true;
+        window.setTimeout(() => { window.location.assign(link.href); }, 180);
+      }
     };
     link.addEventListener("click", checkout);
     link.addEventListener("auxclick", checkout);
