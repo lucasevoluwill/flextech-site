@@ -177,3 +177,21 @@ body{background:#0d1117;color:#cbd5e1}.shipping-bar{position:sticky;top:0;z-inde
 
 /* Final conversion refinements */
 .hero-copy{row-gap:13px}.hero-copy .eyebrow,.hero-copy h1,.hero-tags{margin-bottom:1px}.hero-grid{row-gap:15px}.hero-sizes .size-options,.purchase-sizes .size-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-height:0}.hero-sizes .size-option,.purchase-sizes .size-option{justify-content:flex-start;align-items:center;min-height:54px;padding:8px 10px}.hero-sizes .size-option__copy,.purchase-sizes .size-option__copy{display:grid;gap:2px}.hero-sizes .size-option__copy strong,.purchase-sizes .size-option__copy strong{font-size:15px}.hero-sizes .size-option__copy small,.purchase-sizes .size-option__copy small{display:block;color:#cbd5e1;font-size:11px;line-height:1.2}.hero-sizes .size-option:has(input:checked) small,.purchase-sizes .size-option:has(input:checked) small{color:#17120d}.purchase-sizes{margin-top:17px}.purchase-sizes .size-option{border-color:#2a313c;background:#0d1117}.purchase-sizes .size-option input{accent-color:#f97316}.purchase-sizes .size-option:has(input:checked){background:#f97316;border-color:#f97316;box-shadow:none}.purchase-sizes .size-option:has(input:checked) strong{color:#17120d}.purchase-card>.selection-status{margin:12px 0 8px;color:#cbd5e1}.purchase-card>.checkout-button{margin-top:0}.review-viewport,.review-feed.is-enhanced .review-viewport{overflow-x:auto;padding-inline:4px}.marketplace-review-card{min-width:260px}.marketplace-review-grid{padding-inline:4px 16px}
+/* Ajuste de tamanho da logo Flextech */
+.brand {
+  height: 42px;
+  width: auto;
+  max-width: 220px;
+}
+
+.site-footer .brand {
+  height: 46px;
+  width: auto;
+  max-width: 240px;
+}
+
+@media (max-width: 640px) {
+  .brand {
+    height: 34px;
+  }
+}
